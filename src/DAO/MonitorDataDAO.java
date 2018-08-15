@@ -13,12 +13,12 @@ import utils.BaseDAO;
 public class MonitorDataDAO {
 	
 	/**
-	 *  ָ�����ںʹ������ļ��ֵ  Ŀǰֻ�ܽ���2017��ݵ�չʾ
+	 *  指定日期和传感器的检测值  目前只能进行2017年份的展示
 	 *  
-	 * @param startDate  ��ʼ����(2017-01-01 00:00:00)
-	 * @param endDate    ��������(2017-11-18 01:00:06)
-	 * @param sensorId   ָ��������
-   	 * @return  ����һ��valuelist
+	 * @param startDate  开始日期(2017-01-01 00:00:00)
+	 * @param endDate    结束日期(2017-11-18 01:00:06)
+	 * @param sensorId   指定传感器
+   	 * @return  返回一个valuelist
 	 */
 	public List getMonitorDataVo(String startDate,String endDate,int sensorId){
 		List<MonitorDataVo> mvList = new ArrayList<MonitorDataVo>();

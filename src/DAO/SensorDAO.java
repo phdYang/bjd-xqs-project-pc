@@ -13,8 +13,8 @@ import utils.BaseDAO;
 public class SensorDAO {
 	
 	/**
-	 * ��ȡ���������id�ʹ���������
-	 * @return �������б�
+	 * 分页获取传感器表的id和传感器姓名
+	 * @return 传感器列表
 	 */
 	public List getSensorVo(int page,int rows){
 		List<SensorVo> svList = new ArrayList<SensorVo>();
@@ -41,6 +41,10 @@ public class SensorDAO {
 		return svList;
 	}
 	
+	/**
+	 * 计算传感器总数
+	 * @return 返回传感器的总条数
+	 */
 	public int getSensorTotal(){
 		int total = 0;
  		Connection conn = BaseDAO.getConn();
@@ -59,7 +63,10 @@ public class SensorDAO {
 		return total;
 	}
 	
-	
+	/**
+	 *  所有的传感器
+	 * @return 传感器总数
+	 */
 	public List getSensorVo(){
 		List<SensorVo> svList = new ArrayList<SensorVo>();
  		Connection conn = BaseDAO.getConn();
