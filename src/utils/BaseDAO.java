@@ -11,7 +11,7 @@ import model.Sensor;
 
 public class BaseDAO {
 
-	private static String bdDriver = "com.mysql.jdbc.Driver";
+	private static String bdDriver = "com.mysql.cj.jdbc.Driver";
     private static String bdUrl = "jdbc:mysql://localhost:3306/gsfibertrail?serverTimezone=GMT&autoReconnect=true";
     private static String bdName = "root";
     private static String bdpwd = "123456";

@@ -43,18 +43,33 @@ public class ShowSensorServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        String rows = request.getParameter("rows") ;
-        String page = request.getParameter("page") ;
-        if(page != null && rows != null){
-            int rowss = Integer.parseInt(rows) ;
-            int pagess = Integer.parseInt(page) ;
-            String json_list = new SensorService().getSensorVo(pagess, rowss);
-            //·µ»ØÊý¾Ý
-            //System.out.println(json_list);
-            response.getWriter().write(json_list) ;
-        }else{
-        	response.getWriter().write("{total:0,rows:[]}") ;
+        String typeId = request.getParameter("typeId");
+        String rows = request.getParameter("rows");
+        String page = request.getParameter("page");
+        if(typeId !=null) {
+        	//System.out.println("0:32 -->"+typeId);
+        	if(page != null && rows != null){
+                int rowss = Integer.parseInt(rows);
+                int pagess = Integer.parseInt(page);
+                int typeIds = Integer.parseInt(typeId);
+                String json_list = new SensorService().getSensorVo(pagess, rowss,typeIds);
+                //System.out.println(json_list);
+                response.getWriter().write(json_list) ;
+            }else{
+            	response.getWriter().write("{total:0,rows:[]}") ;
+            }
+        }else {
+        	if(page != null && rows != null){
+                int rowss = Integer.parseInt(rows) ;
+                int pagess = Integer.parseInt(page) ;
+                String json_list = new SensorService().getSensorVo(pagess, rowss);
+                //System.out.println(json_list);
+                response.getWriter().write(json_list) ;
+            }else{
+            	response.getWriter().write("{total:0,rows:[]}") ;
+            }
         }
+        
  	}
 
 }

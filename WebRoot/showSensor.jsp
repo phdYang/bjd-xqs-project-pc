@@ -24,15 +24,43 @@
 	type="text/css" />
 </head>
 <body>
-<table id="dg"></table> 
+<form id="showSensor-ff" style="padding:10px;">
+	选择传感器类型:   <input id="showSensor-cc" name="typeId" value="">
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">查询</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+</form>
+<table id="dg"></table>
+ 
 <script type="text/javascript">
+	
+	$('#showSensor-cc').combobox({
+	    url:'showSensorTypeServlet',
+	    method:'post',
+	    valueField:'typeId',
+	    textField:'typeName'
+	});
+	
+	function submitForm(){
+		$('#dg').datagrid('load',{    
+			typeId: $('#showSensor-cc').val(),
+		}); 
+	}
+	
+	function clearForm(){
+		$('#showSensor-ff').form('clear');
+	}
+	
 	$(function(){
 		$('#dg').datagrid({    
 		    url:'showSensorServlet',
 		    method:'post',
+		    onLoadError: function(){
+		    	alert("没有查询到相关数据！");
+		    },
 		    columns:[[    
 		        {field:'sensorId',title:'传感器编号',width:100},    
-		        {field:'sensorName',title:'传感器名称',width:100}
+		        {field:'sensorName',title:'传感器名称',width:100},
+		        {field:'sensorType',title:'传感器类型',width:100}
 		    ]],
 		    pagination:true, //分页
 		    fitColumns:true //列自适应宽度

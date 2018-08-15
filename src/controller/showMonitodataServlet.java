@@ -40,7 +40,6 @@ public class showMonitodataServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        System.out.println(1);
         int sensorId = Integer.parseInt(request.getParameter("sensorId"));
         String starDate = request.getParameter("starDate");
         String endDate = request.getParameter("endDate");

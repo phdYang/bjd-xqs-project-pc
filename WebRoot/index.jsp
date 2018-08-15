@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>主界面</title>
+<meta name="copyright" content="All Rights Reserved, Copyright (C) 2018, 北京交大-515, lab" />
+<title>铁路线桥隧状态监测预警</title>
 <!-- 引入JQuery -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.5.5.5/jquery.min.js"></script>
@@ -22,64 +23,79 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/jquery-easyui-1.5.5.5/themes/icon.css"
 	type="text/css" />
+<!-- 自定义js函数 -->
 <script>
-	function addTab(title, url){
-		if ($('#tt').tabs('exists', title)){
-			$('#tt').tabs('select', title);
+	// 弹出tab页
+	function addTab(title, url) {
+		if ($('#easyui-tabs').tabs('exists', title)) {
+			$('#easyui-tabs').tabs('select', title);
 		} else {
-			var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
-			$('#tt').tabs('add',{
-				title:title,
-				content:content,
-				closable:true
+			var content = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+			$('#easyui-tabs').tabs('add', {
+				title : title,
+				content : content,
+				closable : true
 			});
 		}
 	}
+	
 </script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'north',border:false"
-		style="height: 60px; padding: 10px">铁路线桥隧状态监测预警</div>
-	<div class="easyui-accordion"
-		data-options="region:'west',split:true,title:'菜单栏'"
-		style="width: 250px; padding: 10px;">
-		<div title="查询功能" 
-			style="overflow: auto; width: 300px;height: 200px;padding: 1px;">
-			<div title="TreeMenu" data-options="iconCls:'icon-search'" style="padding:1px;">
+	<!-- 上侧 标题栏 -->
+	<div data-options="region:'north',title:'',split:false"
+		style="height: 70px;">
+		<span>铁路线桥隧状态监测预警</span>
+		
+	</div>
+	<!-- 下侧  -->
+	<div data-options="region:'south',split:false"
+		style="height: 30px;padding:5px; text-align:center;">
+		&copy; 2018 北京交大-515 All Rights Reserved
+	</div>
+
+	
+	<!-- 左侧 -->
+	<div data-options="region:'west',title:'功能项',split:false"
+		style="width: 220px;">
+		
+		<div class="easyui-accordion" style="width: 210px;height:auto;">
+			
+			<div title="台账信息" style="overflow:auto;padding:5px;">
 				<ul class="easyui-tree">
-					<li>
-						<a onclick="addTab('查询传感器','showSensor.jsp')">查询传感器</a>
-					</li>
-					<li><a onclick="addTab('查询检测数据','showMonitorData.jsp')">查询检测数据</a></li>
+					<li><span><a onclick="addTab('传感器查询','showSensor.jsp');">传感器查询</a></span></li>
+				</ul>
+			</div>
+			
+			<div title="监测数据管理" style="overflow:auto;padding:5px;">
+				<ul class="easyui-tree">
+					<li><span><a onclick="addTab('数据查询','showMonitorData.jsp');">数据查询</a></span></li>
+				</ul>
+			</div>
+			
+			<div title="数据预测" style="overflow:auto;padding:5px;">
+				<ul class="easyui-tree">
+					<li><span><a onclick="addTab('BP神经网络预测模型','#');">BP神经网络预测模型</a></span></li>
+				</ul>
+			</div>
+			
+			<div title="数据报警" style="overflow:auto;padding:5px;">
+				<ul class="easyui-tree">
+					<li><span><a onclick="addTab('报警设置','#');">报警设置</a></span></li>
+					<li><span><a onclick="addTab('报警查询','#');">报警查询</a></span></li>
 				</ul>
 			</div>
 		</div>
-		<div title="预测功能"
-			style=" width: 100%;padding: 10px;">
-			<div title="TreeMenu" data-options="iconCls:'icon-search'" style="padding:1px;">
-				<ul class="easyui-tree">
-					<li>
-						<a onclick="addTab('查询传感器','showSensor.jsp')">神经网络预测模型</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div title="报警功能"
-			style=" width: 100%;padding: 10px;">
-			<div title="TreeMenu" data-options="iconCls:'icon-search'" style="padding:1px;">
-				<ul class="easyui-tree">
-					<li>
-						<a onclick="addTab('查询传感器','showSensor.jsp')">报警阈值参数设置</a>
-					</li>
-					<li><a onclick="addTab('查询检测数据','showMonitorData.jsp')">报警信息查询</a></li>
-				</ul>
-			</div>
+			
+	</div>
+	<!-- 中心区域 -->
+	<div data-options="region:'center',title:'基本操作区域'" style="height:auto;">
+		<div id="easyui-tabs" class="easyui-tabs" data-options="fit:true,border:false" >
+		    <div title="首页" 
+		    	style="background-image: url(imgs/index-bg1.jpg);"></div>
 		</div>
 	</div>
-	<div data-options="region:'south',border:false"
-		style="height: 50px; padding: 10px;">北京交大 © Copyright 2018-08
-		515</div>
-	<div id="tt" class="easyui-tabs" data-options="region:'center',title:''">
-	</div>
+
+	
 </body>
 </html>

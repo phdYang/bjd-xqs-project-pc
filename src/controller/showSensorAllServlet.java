@@ -41,7 +41,6 @@ public class showSensorAllServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         String json_list = new SensorService().getSensorVo();
-        //·µ»ØÊý¾Ý
         //System.out.println(json_list);
         response.getWriter().write(json_list) ;
 	}
