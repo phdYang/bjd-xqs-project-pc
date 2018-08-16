@@ -55,7 +55,7 @@
 		    url:'showSensorServlet',
 		    method:'post',
 		    onLoadError: function(){
-		    	alert("没有查询到相关数据！");
+		    	$.messager.alert("提示","没有查询到相关数据！");
 		    },
 		    columns:[[    
 		        {field:'sensorId',title:'传感器编号',width:100},    

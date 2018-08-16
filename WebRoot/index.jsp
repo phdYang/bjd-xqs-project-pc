@@ -44,14 +44,20 @@
 <body class="easyui-layout">
 	<!-- 上侧 标题栏 -->
 	<div data-options="region:'north',title:'',split:false"
-		style="height: 70px;">
-		<span>铁路线桥隧状态监测预警</span>
-		
+		style="height: 70px;background-color: #1136c8;">
+		<div class="index-north-left" style="float:left;width:20%;">
+			<img src="${pageContext.request.contextPath}/imgs/index-north-bg1.png " style="height:60px;padding-left:60px;">
+		</div>
+		<div class="index-north-middle" 
+			style="float:left;width:60%;text-align:center;font-size: 20px;font-weight: bold;font-style: ">
+			<p style="padding-left: 10px;color: white;">铁&nbsp;路&nbsp;线&nbsp;桥&nbsp;隧&nbsp;状&nbsp;态&nbsp;监&nbsp;测&nbsp;预&nbsp;警</p>
+		</div>
+		<div class="index-north-right" style="float:left;width:20%;">right</div>
 	</div>
 	<!-- 下侧  -->
 	<div data-options="region:'south',split:false"
-		style="height: 30px;padding:5px; text-align:center;">
-		&copy; 2018 北京交大-515 All Rights Reserved
+		style="height: 30px;padding:5px; text-align:center;color:white;background-color: #1136c8;">
+		&copy; 2018 北京交大-515.Lab All Rights Reserved
 	</div>
 
 	

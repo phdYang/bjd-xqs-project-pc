@@ -24,6 +24,7 @@
 	type="text/css" />
 	
 <script src="${pageContext.request.contextPath}/highcharts/highcharts.js"></script>
+<script src="${pageContext.request.contextPath}/highcharts/themes/dark-blue.js"></script>
 </head>
 <body>
 <form id="ff" action="showMonitodataServlet" method="post">
@@ -56,7 +57,7 @@
 		$('#ff').form('submit', {
 			success:function(data){
 				data_j = JSON.parse(data);
-				showHIghcharts(data_j);
+				showHighcharts(data_j);
 			}
 		});
 	}
@@ -65,40 +66,52 @@
 	}
 
 	var chart = Highcharts.chart('container', {
-	    chart: {
-	        type: 'line'
-	    },
-	    title: {
-	        text: '铁路线桥隧状态数据显示'
-	    },
-	    subtitle: {
-	        text: '数据来源: 北京交大515'
-	    },
-	    xAxis: {
-	        categories: []
-	    },
-	    yAxis: {
-	        title: {
-	            text: '线 桥 隧 监 测 值'
-	        }
-	    },
-	    plotOptions: {
-	        line: {
-	            dataLabels: {
-	                // 开启数据标签
-	                enabled: true          
-	            },
-	            // 关闭鼠标跟踪，对应的提示框、点击事件会失效
-	            enableMouseTracking: false
-	        }
-	    },
-	    series: [{
-	        name: $('#cc').val(),
+		title: {
+				text: '铁路线桥隧状态数据显示'
+		},
+		subtitle: {
+				text: '数据来源: 北京交大515'
+		},
+		yAxis: {
+				title: {
+						text: '线 桥 隧 监 测 值'
+				}
+		},
+		legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle'
+		},
+		plotOptions: {
+				series: {
+						label: {
+								connectorAllowed: false
+						}
+						//pointStart: 2010
+				}
+		},
+		series: [{
+	        name: $('#cc').combobox('getText'),
 	        data: []
-	    }]
+	    }],
+		responsive: {
+				rules: [{
+						condition: {
+								maxWidth: 500
+						},
+						chartOptions: {
+								legend: {
+										layout: 'horizontal',
+										align: 'center',
+										verticalAlign: 'bottom'
+								}
+						}
+				}]
+		}
 	});
 
-	function showHIghcharts(data){
+	function showHighcharts(data){
+		
 		var x = []
 		for(var i = 0;i<data.length;i++){
 			x[i] = data[i].monitorDate
@@ -112,7 +125,7 @@
 		        categories: x
 		    },
 		    series: [{
-		        name: $('#cc').val(),
+		        name: $('#cc').combobox('getText'),
 		        data: s
 		    }]
 		})
